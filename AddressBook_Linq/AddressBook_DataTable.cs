@@ -69,6 +69,19 @@ namespace AddressBook_Linq
         }
 
         /// <summary>
+        /// UC 4 Deletes the name of the contact by.
+        /// </summary>
+        public void DeleteContact(AddressModel model)
+        {
+            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("firstName") == model.firstName).First();
+            if (recordData != null)
+            {
+                recordData.Delete();
+                Console.WriteLine("....Deleted Success....");
+            }
+        }
+
+        /// <summary>
         /// Displays this instance.
         /// </summary>
         public void Display()
