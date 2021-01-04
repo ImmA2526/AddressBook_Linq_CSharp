@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Linq;
+
 namespace AddressBook_Linq
 {
     class AddressBook_DataTable
@@ -10,19 +12,19 @@ namespace AddressBook_Linq
         ///UC 1 Create data table
         /// </summary>
         public readonly DataTable dataTable = new DataTable();
-        public DataTable CreateTable(AddressModel model)
+        public void  CreateTable()
         {
-            var taleColumn1 = new DataColumn("firstName");
+            var taleColumn1 = new DataColumn("firstName",typeof(string));
             dataTable.Columns.Add(taleColumn1);
-            var taleColumn2 = new DataColumn("lastName");
+            var taleColumn2 = new DataColumn("lastName", typeof(string));
             dataTable.Columns.Add(taleColumn2);
-            var taleColumn3 = new DataColumn("city");
+            var taleColumn3 = new DataColumn("city", typeof(string));
             dataTable.Columns.Add(taleColumn3);
-            var taleColumn4 = new DataColumn("state");
+            var taleColumn4 = new DataColumn("state", typeof(string));
             dataTable.Columns.Add(taleColumn4);
-            var taleColumn5 = new DataColumn("zip");
+            var taleColumn5 = new DataColumn("zip", typeof(string));
             dataTable.Columns.Add(taleColumn5);
-            var taleColumn6 = new DataColumn("phoneNumber");
+            var taleColumn6 = new DataColumn("phoneNumber", typeof(string));
             dataTable.Columns.Add(taleColumn6);
 
             ///UC 2 Insert Record
@@ -34,7 +36,36 @@ namespace AddressBook_Linq
             dataTable.Rows.Add("Nijam", "Shaikh", "Pune", "Maha", "345678", "6567890999");
             dataTable.Rows.Add("Nijam", "Sayad", "Mumbai", "Maha", "345666", "9000998889");
 
-            return dataTable;
+            //return dataTable;
+        }
+
+        /// <summary>
+        /// Add the contact.
+        /// </summary>
+        /// <param name="Model">The model.</param>
+        public void AddContact(AddressModel Model)
+        {
+            dataTable.Rows.Add(Model.firstName, Model.lastName, Model.city, 
+                Model.state, Model.zip, Model.phoneNumber);
+            Console.WriteLine("Contact Added Succesfully...");
+        }
+
+        /// <summary>
+        /// UC 3 Edits the contact.
+        /// </summary>
+        /// <param name="contact">The contact.</param>
+        public void EditContact(AddressModel model)
+        {
+            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("firstName") == model.firstName).First();
+            if (recordData != null)
+            {
+                recordData.SetField("LastName", model.lastName);
+                recordData.SetField("Address", model.address);
+                recordData.SetField("City", model.city);
+                recordData.SetField("State", model.state);
+                recordData.SetField("ZipCode", model.zip);
+                recordData.SetField("PhoneNumber", model.phoneNumber);
+            }
         }
 
         /// <summary>
