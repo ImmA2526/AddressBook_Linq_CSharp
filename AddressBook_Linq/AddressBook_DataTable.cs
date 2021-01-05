@@ -26,15 +26,19 @@ namespace AddressBook_Linq
             dataTable.Columns.Add(taleColumn5);
             var taleColumn6 = new DataColumn("phoneNumber", typeof(string));
             dataTable.Columns.Add(taleColumn6);
+            var taleColumn7 = new DataColumn("BookName", typeof(string));
+            dataTable.Columns.Add(taleColumn7);
+            var taleColumn8 = new DataColumn("BookType", typeof(string));
+            dataTable.Columns.Add(taleColumn8);
 
             ///UC 2 Insert Record
-            
-            dataTable.Rows.Add("Imran", "Shaikh", "Pune", "Maha", "345678", "6567890999");
-            dataTable.Rows.Add("Anis", "Sayad", "Mumbai", "Maha", "345666", "9000998889");
-            dataTable.Rows.Add("Arbaj", "Shaikh", "NCR", "Delhi", "345678", "6567890999");
-            dataTable.Rows.Add("Nijam", "Sayad", "NCR", "Delhi", "345666", "9000998889");
-            dataTable.Rows.Add("Nijam", "Shaikh", "Pune", "Maha", "345678", "6567890999");
-            dataTable.Rows.Add("Nijam", "Sayad", "Mumbai", "Maha", "345666", "9000998889");
+
+            dataTable.Rows.Add("Imran", "Shaikh", "Pune", "Maha", "345678", "6567890999", "Family", "Friend");
+            dataTable.Rows.Add("Anis", "Sayad", "Mumbai", "Maha", "345666", "9000998889", "Family", "Friend");
+            dataTable.Rows.Add("Arbaj", "Shaikh", "NCR", "Delhi", "345678", "6567890999","Family","Friend");
+            dataTable.Rows.Add("Nijam", "Sayad", "NCR", "Delhi", "345666", "9000998889","Family","Friend");
+            dataTable.Rows.Add("Nijam", "Shaikh", "Pune", "Maha", "345678", "6567890999","Friend","Friend");
+            dataTable.Rows.Add("Nijam", "Sayad", "Mumbai", "Maha", "345666", "9000998889","Family","Family");
 
             //return dataTable;
         }
@@ -159,6 +163,23 @@ namespace AddressBook_Linq
         }
 
         /// <summary>
+        /// UC 9 Count By Type
+        /// </summary>
+        public void CountByAddressBookType()
+        {
+            var countData = dataTable.AsEnumerable().GroupBy(BookType => BookType.Field<string>("BookType")).
+                Select(BookType => new
+                {
+                    BookType = BookType.Key,
+                    BookTypeCount = BookType.Count()
+                });
+            foreach (var list in countData)
+            {
+                Console.WriteLine("AddressBookType =" + list.BookType + " , " + "AddressBookCount = " + list.BookTypeCount);
+            }
+        }
+
+        /// <summary>
         /// Displays this instance.
         /// </summary>
         public void Display()
@@ -171,6 +192,8 @@ namespace AddressBook_Linq
                 Console.WriteLine("State:-" + table.Field<string>("state"));
                 Console.WriteLine("ZipCode:-" + table.Field<string>("zip"));
                 Console.WriteLine("PhoneNumber:-" + table.Field<string>("phoneNumber"));
+                Console.WriteLine("BookName:-"+table.Field<string>("BookName"));
+                Console.WriteLine("BookName:-" + table.Field<string>("BookType"));
             }
         }
     }
