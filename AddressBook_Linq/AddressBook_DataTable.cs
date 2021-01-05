@@ -82,6 +82,27 @@ namespace AddressBook_Linq
         }
 
         /// <summary>
+        ///U5 Retrives the state of the data by city.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        public void RetriveData_By_CityState(AddressModel table)
+        {
+
+            var recordData = from dataTable in dataTable.AsEnumerable().Where(dataTable => dataTable.Field<string>("city") == table.city) select dataTable;
+            foreach (var tables in recordData.AsEnumerable())
+            {
+                Console.WriteLine("\nFirstName:-" + tables.Field<string>("firstName"));
+                Console.WriteLine("LastName:-" + tables.Field<string>("lastName"));
+                Console.WriteLine("City:-" + tables.Field<string>("city"));
+                Console.WriteLine("State:-" + tables.Field<string>("state"));
+                Console.WriteLine("ZipCode:-" + tables.Field<string>("zip"));
+                Console.WriteLine("PhoneNumber:-" + tables.Field<string>("phoneNumber"));
+            }
+            //Display();
+
+        }
+
+        /// <summary>
         /// Displays this instance.
         /// </summary>
         public void Display()
