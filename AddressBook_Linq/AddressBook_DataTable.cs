@@ -98,8 +98,25 @@ namespace AddressBook_Linq
                 Console.WriteLine("ZipCode:-" + tables.Field<string>("zip"));
                 Console.WriteLine("PhoneNumber:-" + tables.Field<string>("phoneNumber"));
             }
-            //Display();
+        }
 
+        /// <summary>
+        /// UC 6 Retrive By State
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetriveData_By_State(AddressModel table)
+        {
+
+            var recordData = from dataTable in dataTable.AsEnumerable().Where(dataTable => dataTable.Field<string>("state") == table.state) select dataTable;
+            foreach (var tables in recordData.AsEnumerable())
+            {
+                Console.WriteLine("\nFirstName:-" + tables.Field<string>("firstName"));
+                Console.WriteLine("LastName:-" + tables.Field<string>("lastName"));
+                Console.WriteLine("City:-" + tables.Field<string>("city"));
+                Console.WriteLine("State:-" + tables.Field<string>("state"));
+                Console.WriteLine("ZipCode:-" + tables.Field<string>("zip"));
+                Console.WriteLine("PhoneNumber:-" + tables.Field<string>("phoneNumber"));
+            }
         }
 
         /// <summary>
