@@ -127,7 +127,7 @@ namespace AddressBook_Linq
         public void Count_BY_City_State()
         {
             var countBycityState = from row in dataTable.AsEnumerable()
-                                   group row by new { City = row.Field<string>("city"), State = row.Field<string>("state") } into groups
+                                   group row by new { City = row.Field<string>("city"),State = row.Field<string>("state") } into groups
                                    select new
                                    {
                                        City = groups.Key.City,
