@@ -141,6 +141,24 @@ namespace AddressBook_Linq
         }
 
         /// <summary>
+        /// UC 8 Sort By Name
+        /// </summary>
+        /// <param name="model"></param>
+        public void SortContactByCity(AddressModel model)
+        {
+            var records = dataTable.AsEnumerable().Where(x => x.Field<string>("city") == model.city).OrderBy(x => x.Field<string>("firstName")).ThenBy(x => x.Field<string>("lastName"));
+            foreach (var tables in records)
+            {
+                Console.WriteLine("\nFirstName:-" + tables.Field<string>("firstName"));
+                Console.WriteLine("LastName:-" + tables.Field<string>("lastName"));
+                Console.WriteLine("City:-" + tables.Field<string>("city"));
+                Console.WriteLine("State:-" + tables.Field<string>("state"));
+                Console.WriteLine("ZipCode:-" + tables.Field<string>("zip"));
+                Console.WriteLine("PhoneNumber:-" + tables.Field<string>("phoneNumber"));
+            }
+        }
+
+        /// <summary>
         /// Displays this instance.
         /// </summary>
         public void Display()

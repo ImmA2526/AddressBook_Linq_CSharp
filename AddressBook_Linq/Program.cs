@@ -69,7 +69,12 @@ namespace AddressBook_Linq
                             case 7:
                             Console.WriteLine("Count of Address Book : ");
                             dataTable.Count_BY_City_State();
-                                break;
+                            break;
+                        case 8:
+                            Console.Write("Enter City: ");
+                            model.city = Console.ReadLine();
+                            dataTable.SortContactByCity(model);
+                            break;
 
                         case 0:
                             Environment.Exit(0);
