@@ -9,7 +9,7 @@ namespace AddressBook_Linq
     class AddressBook_DataTable
     {
         /// <summary>
-        ///UC 1 Create data table
+        ///UC 11 Refactor and Create data table
         /// </summary>
         public readonly DataTable dataTable = new DataTable();
         public void  CreateTable()
@@ -37,8 +37,8 @@ namespace AddressBook_Linq
             dataTable.Rows.Add("Anis", "Sayad", "Mumbai", "Maha", "345666", "9000998889", "Family", "Friend");
             dataTable.Rows.Add("Arbaj", "Shaikh", "NCR", "Delhi", "345678", "6567890999","Family","Friend");
             dataTable.Rows.Add("Nijam", "Sayad", "NCR", "Delhi", "345666", "9000998889","Family","Friend");
-            dataTable.Rows.Add("Nijam", "Shaikh", "Pune", "Maha", "345678", "6567890999","Friend","Friend");
-            dataTable.Rows.Add("Nijam", "Sayad", "Mumbai", "Maha", "345666", "9000998889","Family","Family");
+            dataTable.Rows.Add("Nehal", "Shaikh", "Pune", "Maha", "345678", "6567890999","Friend","Friend");
+            dataTable.Rows.Add("Najim", "Sayad", "Mumbai", "Maha", "345666", "9000998889","Family","Family");
 
             //return dataTable;
         }
