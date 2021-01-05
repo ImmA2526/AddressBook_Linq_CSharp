@@ -120,6 +120,27 @@ namespace AddressBook_Linq
         }
 
         /// <summary>
+        /// UC 7 Count By City or State 
+        /// </summary>
+        /// <param name="table"></param>
+        
+        public void Count_BY_City_State()
+        {
+            var countBycityState = from row in dataTable.AsEnumerable()
+                                   group row by new { City = row.Field<string>("city"), State = row.Field<string>("state") } into groups
+                                   select new
+                                   {
+                                       City = groups.Key.City,
+                                       State = groups.Key.State,
+                                       count = groups.Count()
+                                   };
+            foreach (var data in countBycityState)
+            {
+                Console.WriteLine(data.City,"\n"+data.State,"\n"+data.count);
+            }
+        }
+
+        /// <summary>
         /// Displays this instance.
         /// </summary>
         public void Display()
