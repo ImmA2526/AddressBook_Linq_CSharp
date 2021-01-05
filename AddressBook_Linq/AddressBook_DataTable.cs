@@ -163,7 +163,7 @@ namespace AddressBook_Linq
         }
 
         /// <summary>
-        /// UC 9 Count By Type
+        /// UC 10 Count By Type and Person
         /// </summary>
         public void CountByAddressBookType()
         {
